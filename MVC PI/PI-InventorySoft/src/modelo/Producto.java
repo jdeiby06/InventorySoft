@@ -1,23 +1,23 @@
-public class Producto {
+public class Producto{
     private int id;
     private String nombre;
     private String categoria;
     private double precio;
     private int cantidad;
-    private int descripcion; // Agregado atributo descripcion
+    private String descripcion; // Agregado atributo descripcion
     private int stock_actual;
     private int stock_minimo = 20;
    
 
-    public Producto(int id, String nombre, String categoria, double precio, int cantidad, int descipcion, int stock_actual, int stock_minimo) {
+    public Producto(int id, String nombre, String categoria, double precio, int cantidad, String descipcion, int stock_actual, int stock_minimo, String descripcion) {
         this.id = id;
         this.nombre = nombre;
         this.categoria = categoria;
         this.precio = precio;
         this.cantidad = cantidad;
-        this.descripcion = descipcion;
+        this.descripcion = descripcion;
         this.stock_actual = stock_actual;
-        this.stock_minimo = stock_minimo;
+        this.stock_minimo = stock_minimo;       
         this.precio = precio;
     }
 
@@ -58,10 +58,10 @@ public class Producto {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
-    public int getDescripcion() {
+    public String getDescripcion() {
         return descripcion;
     }
-    public void setDescripcion(int descripcion) {
+    public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
     public int getStockActual() {
