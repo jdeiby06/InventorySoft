@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class controladorInventarioController {
+public class controladorInventario {
 
     private final List<HistorialInventario> historial = new ArrayList<>();
     private final VistaHistorialInventario vistaHistorial = new VistaHistorialInventario();
