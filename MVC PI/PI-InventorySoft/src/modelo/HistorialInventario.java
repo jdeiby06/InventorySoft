@@ -3,6 +3,7 @@ public class HistorialInventario {
     private int idProducto;
     private int fechaInventario;
 
+    
     public HistorialInventario(int id, int idProducto, int fechaInventario) {
         this.id = id;
         this.idProducto = idProducto;

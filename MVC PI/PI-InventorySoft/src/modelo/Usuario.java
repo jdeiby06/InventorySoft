@@ -5,6 +5,7 @@ public class Usuario {
     private String contrasena;
     private String rol;
 
+    
     public Usuario(int id, String nombre, String correo, String contrasena, String rol) {
         this.id = id;
         this.nombre = nombre;

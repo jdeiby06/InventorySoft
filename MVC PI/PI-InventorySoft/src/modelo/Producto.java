@@ -7,7 +7,8 @@ public class Producto{
     private String descripcion; // Agregado atributo descripcion
     private int stock_actual;
     private int stock_minimo = 20;
-   
+
+    
 
     public Producto(int id, String nombre, String categoria, double precio, int cantidad, String descipcion, int stock_actual, int stock_minimo, String descripcion) {
         this.id = id;
