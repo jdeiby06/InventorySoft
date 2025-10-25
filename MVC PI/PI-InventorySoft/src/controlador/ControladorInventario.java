@@ -27,7 +27,7 @@ public class ControladorInventario {
     public void registrarMovimiento(int idProducto, int fechaInventario) {
         HistorialInventario nuevoRegistro = new HistorialInventario(nextId++, idProducto, fechaInventario);
         historial.add(nuevoRegistro);
-        System.out.println("✅ Movimiento de inventario para Producto ID " + idProducto + " registrado.");
+        System.out.println(" Movimiento de inventario para Producto ID " + idProducto + " registrado.");
     }
     
     public void obtenerYMostrarHistorialPorProducto(int idProducto) {

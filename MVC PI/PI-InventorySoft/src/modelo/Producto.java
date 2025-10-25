@@ -11,7 +11,7 @@ public class Producto{
     private int stock_minimo = 20;
    
 
-    public Producto(int id, String nombre, String categoria, double precio, int cantidad, String descipcion, int stock_actual, int stock_minimo) {
+    public Producto(int id, String nombre, String categoria, double precio, int cantidad, String descipcion, int stock_actual, int stock_minimo, String descripcion) {
         this.id = id;
         this.nombre = nombre;
         this.categoria = categoria;

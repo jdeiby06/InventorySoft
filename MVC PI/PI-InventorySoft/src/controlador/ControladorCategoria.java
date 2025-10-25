@@ -25,7 +25,7 @@ public class ControladorCategoria {
     public void crearCategoria(String nombre, String descripcion) {
         Categoria nueva = new Categoria(nextId++, nombre, descripcion);
         categorias.add(nueva);
-        System.out.println("✅ Categoría '" + nombre + "' creada exitosamente.");
+        System.out.println("Categoría '" + nombre + "' creada exitosamente.");
     }
 
     public void buscarYMostrarPorId(int id) {
@@ -36,7 +36,7 @@ public class ControladorCategoria {
         if (categoriaEncontrada.isPresent()) {
             vistaCategoria.mostrarInformacionCategorias(List.of(categoriaEncontrada.get()));
         } else {
-            System.out.println("❌ ERROR: Categoría con ID " + id + " no encontrada.");
+            System.out.println(" ERROR: Categoría con ID " + id + " no encontrada.");
         }
     }
 }
