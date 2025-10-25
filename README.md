@@ -1,4 +1,5 @@
 # InventorySoft
+Repositorio para el codigo fuente de el sistema InventorySoft
 
 ## Integrantes
 - Jenner Mauricio Quintero Delgado
