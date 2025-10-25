@@ -1,3 +1,5 @@
+package modelo;
+
 public class HistorialInventario {
     private int id;
     private int idProducto;

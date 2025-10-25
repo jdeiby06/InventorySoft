@@ -1,3 +1,5 @@
+package modelo;
+
 public class Producto{
     private int id;
     private String nombre;
@@ -9,7 +11,7 @@ public class Producto{
     private int stock_minimo = 20;
    
 
-    public Producto(int id, String nombre, String categoria, double precio, int cantidad, String descipcion, int stock_actual, int stock_minimo, String descripcion) {
+    public Producto(int id, String nombre, String categoria, double precio, int cantidad, String descipcion, int stock_actual, int stock_minimo) {
         this.id = id;
         this.nombre = nombre;
         this.categoria = categoria;
@@ -67,8 +69,8 @@ public class Producto{
     public int getStockActual() {
         return stock_actual;
     }
-    public int SetStockActal (int stock_actual){
-        return this.stock_actual = stock_actual;
+    public void setStockActual (int stock_actual){
+        this.stock_actual = stock_actual;
     }
     public int getStockMinimo() {
         return stock_minimo;
