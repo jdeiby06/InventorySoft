@@ -1,0 +1,34 @@
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+.flattened-pom.xml
+
+# IDE
+.classpath
+.project
+.settings/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Compilados
+*.class
+*.jar
+*.zip
+
+# Logs
+*.log
+
+# Configuración sensible (credenciales de base de datos)
+src/main/resources/config.properties
+target/classes/config.properties
+# Si prefieres ignorar todos los .properties con credenciales, descomenta:
+# **/config.properties
