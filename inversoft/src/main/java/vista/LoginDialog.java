@@ -14,6 +14,87 @@ public class LoginDialog {
 
     private static boolean volverAtras = false;
 
+    /**
+     * Muestra un diálogo para recuperación de contraseña.
+     * El usuario ingresa su email y se muestra la contraseña (o un mensaje si no existe).
+     */
+    private static void mostrarDialogoRecuperacion(JDialog parentDialog, ControladorUsuario ctrlUsuario) {
+        JDialog dialogo = new JDialog(parentDialog, "Recuperar Contraseña", true);
+        dialogo.setSize(500, 300);
+        dialogo.setLocationRelativeTo(parentDialog);
+        dialogo.setResizable(false);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        panel.setBackground(new Color(240, 240, 240));
+
+        JLabel lblTitulo = new JLabel("📧 Recuperar Contraseña");
+        lblTitulo.setFont(new Font("Arial", Font.BOLD, 16));
+        lblTitulo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(lblTitulo);
+        panel.add(Box.createVerticalStrut(15));
+
+        JLabel lblEmail = new JLabel("Ingresa tu correo electrónico:");
+        lblEmail.setFont(new Font("Arial", Font.PLAIN, 12));
+        panel.add(lblEmail);
+        panel.add(Box.createVerticalStrut(5));
+
+        JTextField txtEmail = new JTextField();
+        txtEmail.setPreferredSize(new Dimension(300, 35));
+        txtEmail.setMaximumSize(new Dimension(400, 35));
+        panel.add(txtEmail);
+        panel.add(Box.createVerticalStrut(15));
+
+        JPanel panelBotones = new JPanel();
+        panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 0));
+        panelBotones.setBackground(new Color(240, 240, 240));
+
+        JButton btnRecuperar = new JButton("🔑 Recuperar");
+        btnRecuperar.setBackground(new Color(39, 174, 96));
+        btnRecuperar.setForeground(Color.WHITE);
+        btnRecuperar.setFont(new Font("Arial", Font.BOLD, 12));
+        btnRecuperar.addActionListener(e -> {
+            String email = txtEmail.getText().trim();
+            if (email.isEmpty()) {
+                JOptionPane.showMessageDialog(dialogo, "Por favor ingresa tu correo", "Campo Vacío", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            Usuario usuario = null;
+            for (Usuario u : ctrlUsuario.obtenerUsuarios()) {
+                if (u.getCorreo().equalsIgnoreCase(email)) {
+                    usuario = u;
+                    break;
+                }
+            }
+            if (usuario != null) {
+                JOptionPane.showMessageDialog(dialogo, 
+                    "Tu contraseña es: " + usuario.getContrasena(),
+                    "Contraseña Recuperada",
+                    JOptionPane.INFORMATION_MESSAGE);
+                dialogo.dispose();
+            } else {
+                JOptionPane.showMessageDialog(dialogo, 
+                    "No se encontró un usuario con ese correo.",
+                    "Usuario No Encontrado",
+                    JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
+        JButton btnCancelar = new JButton("Cancelar");
+        btnCancelar.setBackground(new Color(244, 67, 54));
+        btnCancelar.setForeground(Color.WHITE);
+        btnCancelar.setFont(new Font("Arial", Font.BOLD, 12));
+        btnCancelar.addActionListener(e -> dialogo.dispose());
+
+        panelBotones.add(btnRecuperar);
+        panelBotones.add(btnCancelar);
+        panel.add(panelBotones);
+
+        dialogo.add(panel);
+        dialogo.setVisible(true);
+    }
+
     public static Usuario promptLogin(Frame parent, ControladorUsuario ctrlUsuario, String rolSeleccionado) {
         volverAtras = false;
         
@@ -182,6 +263,23 @@ public class LoginDialog {
         panelBotones.add(btnVolver);
 
         panelPrincipal.add(panelBotones, BorderLayout.SOUTH);
+
+        // Panel inferior con botón "Olvidó contraseña?"
+        JPanel panelOlvido = new JPanel();
+        panelOlvido.setBackground(new Color(41, 128, 185));
+        panelOlvido.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
+        
+        JButton btnOlvido = new JButton("❓ ¿Olvidó su contraseña?");
+        btnOlvido.setFont(new Font("Arial", Font.PLAIN, 11));
+        btnOlvido.setBackground(new Color(52, 152, 219));
+        btnOlvido.setForeground(Color.WHITE);
+        btnOlvido.setFocusPainted(false);
+        btnOlvido.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnOlvido.addActionListener(e -> {
+            mostrarDialogoRecuperacion(dialog, ctrlUsuario);
+        });
+        panelOlvido.add(btnOlvido);
+        panelPrincipal.add(panelOlvido, BorderLayout.AFTER_LAST_LINE);
 
     dialog.add(panelPrincipal);
     Transition.fadeIn(dialog);

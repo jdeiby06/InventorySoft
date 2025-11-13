@@ -84,12 +84,12 @@ public class InterfazPrincipal extends JFrame {
         
         // Agregar pestañas
         boolean esEmpleado = usuarioAutenticado != null && "Empleado".equalsIgnoreCase(usuarioAutenticado.getRol());
-        // Si el usuario es 'Empleado' sólo mostrar la pestaña Productos con permisos limitados
+        // Si el usuario es 'Empleado' mostrar Productos, Categorías e Historial (sin Usuarios)
         tabbedPane.addTab("Productos", crearPestañaProductos());
+        tabbedPane.addTab("Categorías", crearPestañaCategorias());
+        tabbedPane.addTab("Historial", crearPestañaHistorial());
         if (!esEmpleado) {
-            tabbedPane.addTab("Categorías", crearPestañaCategorias());
             tabbedPane.addTab("Usuarios", crearPestañaUsuarios());
-            tabbedPane.addTab("Historial", crearPestañaHistorial());
         }
         
         panelPrincipal.add(tabbedPane, BorderLayout.CENTER);
@@ -298,12 +298,12 @@ public class InterfazPrincipal extends JFrame {
         
         panel.add(btnAgregarProducto);
         panel.add(btnEditarProducto);
-        // Permisos: si es 'Empleado' sólo permitir Agregar, Editar y Vender
+        // Permisos: Empleado puede ver Bajo Stock pero no Eliminar ni Actualizar Stock
         if (!esEmpleado) {
             panel.add(btnEliminarProducto);
             panel.add(btnActualizarStock);
-            panel.add(btnProductosBajoStock);
         }
+        panel.add(btnProductosBajoStock);
         panel.add(btnVender);
         panel.add(btnActualizar);
         
