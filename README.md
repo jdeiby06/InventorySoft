@@ -10,6 +10,9 @@
 ### Administrador: admin@app.com
 pass123
 
+## Gerente: jeffer@gmail.com
+adm123
+
 
 ### Usuario: usuario@gmail.com
 pass456

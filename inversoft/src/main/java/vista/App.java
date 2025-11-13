@@ -12,10 +12,7 @@ import javax.swing.JOptionPane;
 public class App {
 
     public static void main(String[] args) {
-        // ==============================================
-        // 1. Instanciación de Controladores
-        // Es el punto donde el Main 'conecta' la aplicación.
-        // ==============================================
+       
         
         System.out.println("--- INICIANDO APLICACIÓN INVENTARIO ---");
         
