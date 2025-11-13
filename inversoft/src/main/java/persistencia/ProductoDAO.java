@@ -52,7 +52,7 @@ public class ProductoDAO {
 
     public Producto insertar(Producto p) {
         String sql = "INSERT INTO productos (nombre, categoria, precio, cantidad, descripcion, stock_actual, stock_minimo) VALUES (?,?,?,?,?,?,?)";
-        try (Connection c = ConexionDB.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (Connection c = ConexionDB.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
             ps.setString(1, p.getNombre());
             ps.setString(2, p.getCategoria());
             ps.setDouble(3, p.getPrecio());
@@ -61,9 +61,10 @@ public class ProductoDAO {
             ps.setInt(6, p.getStockActual());
             ps.setInt(7, p.getStockMinimo());
             ps.executeUpdate();
-            try (ResultSet rs = ps.getGeneratedKeys()) {
+            // Obtener el último ID insertado (SQLite compatible)
+            try (Statement s = c.createStatement(); ResultSet rs = s.executeQuery("SELECT last_insert_rowid() as id")) {
                 if (rs.next()) {
-                    p.setId(rs.getInt(1));
+                    p.setId(rs.getInt("id"));
                 }
             }
             return p;
