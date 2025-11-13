@@ -98,10 +98,10 @@ public class LoginDialog {
     public static Usuario promptLogin(Frame parent, ControladorUsuario ctrlUsuario, String rolSeleccionado) {
         volverAtras = false;
         
-        // Crear diálogo personalizado
+        // Crear diálogo personalizado con tamaño aumentado
         JDialog dialog = new JDialog(parent, "Iniciar Sesión", true);
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        dialog.setSize(600, 550);
+        dialog.setSize(700, 650);
         dialog.setLocationRelativeTo(parent);
         dialog.setResizable(false);
 
@@ -148,61 +148,66 @@ public class LoginDialog {
         panelTitulo.add(lblRolInfo);
         panelPrincipal.add(panelTitulo, BorderLayout.NORTH);
 
-        // Panel central con campos de formulario
+        // Panel central con campos de formulario - aumentado con más espacios
         JPanel panelCentral = new JPanel();
         panelCentral.setLayout(new BoxLayout(panelCentral, BoxLayout.Y_AXIS));
-        panelCentral.setBorder(BorderFactory.createEmptyBorder(30, 60, 40, 60));
+        panelCentral.setBorder(BorderFactory.createEmptyBorder(40, 80, 50, 80));
         panelCentral.setOpaque(false);
 
         // Campo Email
         JLabel lblEmail = new JLabel("📧 Email:");
-        lblEmail.setFont(new Font("Arial", Font.BOLD, 13));
+        lblEmail.setFont(new Font("Arial", Font.BOLD, 14));
         lblEmail.setForeground(Color.WHITE);
         JTextField txtEmail = new JTextField();
-        txtEmail.setFont(new Font("Arial", Font.PLAIN, 13));
-        txtEmail.setPreferredSize(new Dimension(350, 40));
-        txtEmail.setMaximumSize(new Dimension(350, 40));
+        txtEmail.setFont(new Font("Arial", Font.PLAIN, 14));
+        txtEmail.setPreferredSize(new Dimension(400, 45));
+        txtEmail.setMaximumSize(new Dimension(400, 45));
         txtEmail.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(41, 128, 185), 2),
-                BorderFactory.createEmptyBorder(5, 10, 5, 10)));
+                BorderFactory.createEmptyBorder(8, 12, 8, 12)));
 
         // Campo Contraseña
         JLabel lblPass = new JLabel("🔑 Contraseña:");
-        lblPass.setFont(new Font("Arial", Font.BOLD, 13));
+        lblPass.setFont(new Font("Arial", Font.BOLD, 14));
         lblPass.setForeground(Color.WHITE);
         JPasswordField txtPass = new JPasswordField();
-        txtPass.setFont(new Font("Arial", Font.PLAIN, 13));
-        txtPass.setPreferredSize(new Dimension(350, 40));
-        txtPass.setMaximumSize(new Dimension(350, 40));
+        txtPass.setFont(new Font("Arial", Font.PLAIN, 14));
+        txtPass.setPreferredSize(new Dimension(400, 45));
+        txtPass.setMaximumSize(new Dimension(400, 45));
         txtPass.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(41, 128, 185), 2),
-                BorderFactory.createEmptyBorder(5, 10, 5, 10)));
+                BorderFactory.createEmptyBorder(8, 12, 8, 12)));
 
         panelCentral.add(lblEmail);
-        panelCentral.add(Box.createVerticalStrut(8));
+        panelCentral.add(Box.createVerticalStrut(10));
         panelCentral.add(txtEmail);
-        panelCentral.add(Box.createVerticalStrut(20));
+        panelCentral.add(Box.createVerticalStrut(25));
         panelCentral.add(lblPass);
-        panelCentral.add(Box.createVerticalStrut(8));
+        panelCentral.add(Box.createVerticalStrut(10));
         panelCentral.add(txtPass);
 
         panelPrincipal.add(panelCentral, BorderLayout.CENTER);
 
-        // Panel inferior con botones
+        // Panel con botones principales (Entrar y Volver)
+        JPanel panelBotonesPrincipal = new JPanel();
+        panelBotonesPrincipal.setLayout(new BorderLayout());
+        panelBotonesPrincipal.setBackground(new Color(41, 128, 185));
+
+        // Panel inferior con botones - aumentado con más espacios
         JPanel panelBotones = new JPanel();
         panelBotones.setBackground(new Color(41, 128, 185));
-        panelBotones.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
-        panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER, 15, 0));
+        panelBotones.setBorder(BorderFactory.createEmptyBorder(20, 20, 15, 20));
+        panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER, 25, 15));
 
         // Array para almacenar el resultado
         final Usuario[] resultado = {null};
 
         // Botón Entrar
         JButton btnEntrar = new JButton("✅ ENTRAR");
-        btnEntrar.setFont(new Font("Arial", Font.BOLD, 13));
+        btnEntrar.setFont(new Font("Arial", Font.BOLD, 15));
         btnEntrar.setBackground(new Color(39, 174, 96));
         btnEntrar.setForeground(Color.WHITE);
-        btnEntrar.setPreferredSize(new Dimension(150, 45));
+        btnEntrar.setPreferredSize(new Dimension(170, 55));
         btnEntrar.setFocusPainted(false);
         btnEntrar.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnEntrar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -237,10 +242,10 @@ public class LoginDialog {
 
         // Botón Volver
         JButton btnVolver = new JButton("⬅️ VOLVER");
-        btnVolver.setFont(new Font("Arial", Font.BOLD, 13));
+        btnVolver.setFont(new Font("Arial", Font.BOLD, 15));
         btnVolver.setBackground(new Color(149, 165, 166));
         btnVolver.setForeground(Color.WHITE);
-        btnVolver.setPreferredSize(new Dimension(150, 45));
+        btnVolver.setPreferredSize(new Dimension(170, 55));
         btnVolver.setFocusPainted(false);
         btnVolver.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -261,25 +266,37 @@ public class LoginDialog {
 
         panelBotones.add(btnEntrar);
         panelBotones.add(btnVolver);
+        panelBotonesPrincipal.add(panelBotones, BorderLayout.CENTER);
 
-        panelPrincipal.add(panelBotones, BorderLayout.SOUTH);
-
-        // Panel inferior con botón "Olvidó contraseña?"
+        // Panel con botón "Olvidó contraseña?" en la parte inferior
         JPanel panelOlvido = new JPanel();
+        panelOlvido.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
         panelOlvido.setBackground(new Color(41, 128, 185));
-        panelOlvido.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
+        panelOlvido.setBorder(BorderFactory.createEmptyBorder(0, 15, 10, 15));
         
         JButton btnOlvido = new JButton("❓ ¿Olvidó su contraseña?");
-        btnOlvido.setFont(new Font("Arial", Font.PLAIN, 11));
-        btnOlvido.setBackground(new Color(52, 152, 219));
-        btnOlvido.setForeground(Color.WHITE);
-        btnOlvido.setFocusPainted(false);
+        btnOlvido.setFont(new Font("Arial", Font.PLAIN, 10));
+        btnOlvido.setContentAreaFilled(false);
+        btnOlvido.setBorderPainted(false);
+        btnOlvido.setForeground(new Color(200, 220, 255));
         btnOlvido.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnOlvido.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnOlvido.setForeground(Color.WHITE);
+            }
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnOlvido.setForeground(new Color(200, 220, 255));
+            }
+        });
         btnOlvido.addActionListener(e -> {
             mostrarDialogoRecuperacion(dialog, ctrlUsuario);
         });
         panelOlvido.add(btnOlvido);
-        panelPrincipal.add(panelOlvido, BorderLayout.AFTER_LAST_LINE);
+        panelBotonesPrincipal.add(panelOlvido, BorderLayout.SOUTH);
+
+        panelPrincipal.add(panelBotonesPrincipal, BorderLayout.SOUTH);
 
     dialog.add(panelPrincipal);
     Transition.fadeIn(dialog);
