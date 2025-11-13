@@ -83,10 +83,14 @@ public class InterfazPrincipal extends JFrame {
         tabbedPane.setBackground(new Color(255, 255, 255));
         
         // Agregar pestañas
+        boolean esEmpleado = usuarioAutenticado != null && "Empleado".equalsIgnoreCase(usuarioAutenticado.getRol());
+        // Si el usuario es 'Empleado' sólo mostrar la pestaña Productos con permisos limitados
         tabbedPane.addTab("Productos", crearPestañaProductos());
-        tabbedPane.addTab("Categorías", crearPestañaCategorias());
-        tabbedPane.addTab("Usuarios", crearPestañaUsuarios());
-        tabbedPane.addTab("Historial", crearPestañaHistorial());
+        if (!esEmpleado) {
+            tabbedPane.addTab("Categorías", crearPestañaCategorias());
+            tabbedPane.addTab("Usuarios", crearPestañaUsuarios());
+            tabbedPane.addTab("Historial", crearPestañaHistorial());
+        }
         
         panelPrincipal.add(tabbedPane, BorderLayout.CENTER);
         
@@ -206,6 +210,8 @@ public class InterfazPrincipal extends JFrame {
         panel.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
         panel.setBackground(new Color(240, 240, 240));
         
+        boolean esEmpleado = usuarioAutenticado != null && "Empleado".equalsIgnoreCase(usuarioAutenticado.getRol());
+
         JButton btnAgregarProducto = new JButton("➕ Agregar Producto");
         btnAgregarProducto.setFont(new Font("Arial", Font.BOLD, 11));
         btnAgregarProducto.setBackground(new Color(76, 175, 80));
@@ -292,11 +298,14 @@ public class InterfazPrincipal extends JFrame {
         
         panel.add(btnAgregarProducto);
         panel.add(btnEditarProducto);
-        panel.add(btnEliminarProducto);
-    panel.add(btnActualizarStock);
-    panel.add(btnVender);
-    panel.add(btnProductosBajoStock);
-    panel.add(btnActualizar);
+        // Permisos: si es 'Empleado' sólo permitir Agregar, Editar y Vender
+        if (!esEmpleado) {
+            panel.add(btnEliminarProducto);
+            panel.add(btnActualizarStock);
+            panel.add(btnProductosBajoStock);
+        }
+        panel.add(btnVender);
+        panel.add(btnActualizar);
         
         return panel;
     }

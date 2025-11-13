@@ -17,6 +17,8 @@ public class ControladorUsuario {
         usuarios.add(new Usuario(nextId++, "Standard User", "user@app.com", "pass456", "USER"));
         // Usuario gerente solicitado por el usuario
         usuarios.add(new Usuario(nextId++, "Jeffer", "Jeffer@gmail.com", "adm123", "GERENTE"));
+        // Usuario de prueba solicitado: correo usuario@gmail.com, contraseña pass456, rol Empleado
+        usuarios.add(new Usuario(nextId++, "Usuario Empleado", "usuario@gmail.com", "pass456", "Empleado"));
     }
 
     public void obtenerYMostrarTodosLosUsuarios() {
