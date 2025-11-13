@@ -9,9 +9,9 @@ import java.util.Properties;
 
 /**
  * Clase utilitaria para manejar la conexión JDBC usando un archivo
- * de propiedades `src/main/resources/db.properties`.
+ * de propiedades `src/main/resources/config.properties`.
  *
- * Rellena `db.properties` con url, user y password. Si tu driver no se
+ * Rellena `config.properties` con url, user y password. Si tu driver no se
  * auto-registra, añade la propiedad `driver=com.xyz.Driver` y el jar en
  * el classpath o la dependencia en pom.xml.
  */
@@ -28,7 +28,7 @@ public class ConexionDB {
                 System.err.println("Advertencia: no se encontró config.properties en classpath");
             }
         } catch (IOException e) {
-            System.err.println("Error leyendo db.properties: " + e.getMessage());
+            System.err.println("Error leyendo config.properties: " + e.getMessage());
         }
     }
 
@@ -53,7 +53,7 @@ public class ConexionDB {
         }
 
         if (url.isEmpty()) {
-            throw new SQLException("Propiedad 'url' vacía en db.properties");
+            throw new SQLException("Propiedad 'url' vacía en config.properties");
         }
 
         if (user.isEmpty()) {
