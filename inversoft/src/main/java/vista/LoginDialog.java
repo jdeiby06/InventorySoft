@@ -196,8 +196,8 @@ public class LoginDialog {
         // Panel inferior con botones - aumentado con más espacios
         JPanel panelBotones = new JPanel();
         panelBotones.setBackground(new Color(41, 128, 185));
-        panelBotones.setBorder(BorderFactory.createEmptyBorder(20, 20, 15, 20));
-        panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER, 25, 15));
+        panelBotones.setBorder(BorderFactory.createEmptyBorder(5, 20, 5, 20));
+        panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER, 25, 5));
 
         // Array para almacenar el resultado
         final Usuario[] resultado = {null};
